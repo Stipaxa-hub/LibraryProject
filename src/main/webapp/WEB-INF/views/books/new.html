@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add new Book</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    form {
+      background-color: #f3f3f3;
+      border-radius: 10px;
+      margin: 20px auto;
+      padding: 20px;
+      width: 500px;
+    }
+
+    label {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      display: block;
+      font-size: 16px;
+      height: 40px;
+      margin-bottom: 20px;
+      padding: 10px;
+      width: 100%;
+    }
+
+    input[type="submit"] {
+      background-color: #00aaff;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      display: block;
+      font-size: 16px;
+      height: 40px;
+      margin: 20px auto;
+      width: 200px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0077bb;
+    }
+
+  </style>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/books}" th:object="${book}">
+  <label for="title">Enter book's title</label>
+  <input type="text" th:field="*{title}" id="title"/>
+  <div style="font-family: Arial, sans-serif; color: red;" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name error</div>
+  <br/>
+  <label for="author">Enter book's author</label>
+  <input type="text" th:field="*{author}" id="author">
+  <div style="font-family: Arial, sans-serif; color: red;" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Name error</div>
+  <br/>
+  <label for="year">Enter book's year</label>
+  <input type="text" th:field="*{year}" id="year">
+  <div style="font-family: Arial, sans-serif; color: red;" th:if="${#fields.hasErrors('year')} " th:errors="*{year}">Name error</div>
+  <br/>
+  <input type="submit" value="Create">
+</form>
+</body>
+</html>

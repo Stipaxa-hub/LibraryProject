@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+<head>
+  <meta charset="UTF-8">
+  <title>Add new Person</title>
+  <head>
+    <meta charset="UTF-8">
+    <title>Edit Person</title>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        margin: 0 auto;
+      }
+      label {
+        margin-top: 20px;
+      }
+      input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        margin-top: 10px;
+      }
+      input[type="submit"] {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: lightblue;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/books/{id}(id=${book.getId()})}" th:object="${book}">
+  <label for="title">Enter book's title</label>
+  <input type="text" th:field="*{title}" id="title"/>
+  <div style="font-family: Arial, sans-serif; color: red;" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name error</div>
+  <br/>
+  <label for="author">Enter author's name</label>
+  <input type="text" th:field="*{author}" id="author">
+  <div style="font-family: Arial, sans-serif; color: red;" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Name error</div>
+  <br/>
+  <label for="year">Enter book's year</label>
+  <input type="text" th:field="*{year}" id="year">
+  <div style="font-family: Arial, sans-serif; color: red;" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Name error</div>
+  <br/>
+  <input type="submit" value="Edit">
+</form>
+</body>
+</html>

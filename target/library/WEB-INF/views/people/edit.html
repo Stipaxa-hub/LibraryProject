@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+<head>
+  <meta charset="UTF-8">
+  <title>Add new Person</title>
+  <head>
+    <meta charset="UTF-8">
+    <title>Edit Person</title>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        margin: 0 auto;
+      }
+      label {
+        margin-top: 20px;
+      }
+      input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        margin-top: 10px;
+      }
+      input[type="submit"] {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: lightblue;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .create-person-btn {
+        background-color: #00aaff;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        display: block;
+        font-size: 16px;
+        margin: 20px auto;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        width: 200px;
+      }
+
+      .create-person-btn:hover {
+        background-color: #0077bb;
+      }
+    </style>
+  </head>
+
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
+  <label for="fullName">Enter your full name</label>
+  <input type="text" th:field="*{fullName}" id="fullName"/>
+  <div style="font-family: Arial, sans-serif; color: red;" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Name error</div>
+  <br/>
+  <label for="yearOfBirth">Enter your year of birth</label>
+  <input type="text" th:field="*{yearOfBirth}" id="yearOfBirth">
+  <div  style="font-family: Arial, sans-serif; color: red;" th:if="${#fields.hasErrors('yearOfBirth')}" th:errors="*{yearOfBirth}">Name error</div>
+  <br/>
+  <input type="submit" value="Edit">
+</form>
+</body>
+</html>

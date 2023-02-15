@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>People</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .person-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      list-style: none;
+      margin: 20px 0;
+      padding: 0;
+    }
+
+    .person-list__item {
+      margin: 10px;
+      text-align: center;
+      width: 25%;
+    }
+
+    .person-list__item a {
+      color: #333;
+      display: block;
+      text-decoration: none;
+    }
+
+    .person-list__item a:hover {
+      color: #00aaff;
+    }
+
+    .create-person-btn {
+      background-color: #00aaff;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      display: block;
+      font-size: 16px;
+      margin: 20px auto;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      width: 200px;
+    }
+
+    .create-person-btn:hover {
+      background-color: #0077bb;
+    }
+  </style>
+</head>
+<body>
+
+<h1 class="person-list">All people</h1>
+
+<ul class="person-list">
+  <li class="person-list__item" th:each="person : ${people}">
+    <a th:href="@{/people/{id}(id=${person.getId()})}"
+       th:text="${person.getFullName() + ', ' + person.getYearOfBirth()}">user</a>
+  </li>
+</ul>
+
+<br/>
+<hr/>
+
+<a href="/people/new" class="create-person-btn">Create new person</a>
+<a href="/" class="create-person-btn">Go to main  menu</a>
+
+</body>
+</html>
